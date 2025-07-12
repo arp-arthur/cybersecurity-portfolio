@@ -11,7 +11,15 @@ sudo arp-scan --interface=eth1 192.168.56.0/24
 a saída seria algo assim:
 
 ```bash
-─$ sudo arp-scan --interface=eth1 192.168.56.0/24 Interface: eth1, type: EN10MB, MAC: 08:00:27:34:83:16, IPv4: 192.168.56.1 WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan) 192.168.56.11 08:00:27:97:46:d9 (Unknown) 1 packets received by filter, 0 packets dropped by kernel Ending arp-scan 1.10.0: 256 hosts scanned in 1.940 seconds (131.96 hosts/sec). 1 responded
+─$ sudo arp-scan --interface=eth1 192.168.56.0/24 
+Interface: eth1, type: EN10MB, MAC: 08:00:27:34:83:16, IPv4: 192.168.56.1 
+WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied 
+WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied 
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan) 
+192.168.56.11 08:00:27:97:46:d9 (Unknown) 
+1 packets received by filter, 0 packets dropped by kernel 
+Ending arp-scan 1.10.0: 256 hosts scanned in 1.940 seconds (131.96 hosts/sec). 
+1 responded
 ```
 
 Veja que o IP da máquina é 192.168.56.11. Com isso, já podemos fazer um information gathering.
