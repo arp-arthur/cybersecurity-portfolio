@@ -1,4 +1,4 @@
-# Host discovery
+# Host Discovery
 
 Preciso saber o ip da máquina. Sendo assim, preciso fazer um arp-scan na rede.
 
@@ -17,7 +17,7 @@ Ending arp-scan 1.10.0: 256 hosts scanned in 2.017 seconds (126.92 hosts/sec). 1
 
 ```
 
-# Information gathering
+# Information Gathering
 
 No navegador, fui em http://192.168.56.14 e concluí que a máquina roda um HIDS (Host-based Intrusion Detection System) chamado OSSEC na versão 0.8.
 
@@ -327,7 +327,7 @@ Disse que o webroot mudou do padrão /var/www/html para /var/www/tryingharderisj
 
 Agora que já temos a versão do proftpd, vamos tentar um exploit.
 
-# Gaining access
+# Gaining Access
 
 ```bash
 msf6 exploit(linux/ftp/proftp_sreplace) > search proftpd
@@ -532,6 +532,8 @@ drwxrwxrwx 2 www-data www-data  4096 Jul 13 02:37 tmp
 ```
 
 Tem um arquivo do usuário patrick provavelmente: patricksecretsofjoy
+
+# Privilege Escalation
 
 ```bash
 cat ossec/patricksecretsofjoy

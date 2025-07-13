@@ -1,4 +1,4 @@
-# Host discovery
+# Host Discovery
 
 Aqui também preciso saber o ip da máquina. Sendo assim, preciso fazer um arp-scan na rede
 
@@ -83,7 +83,7 @@ Interact with a module by name or index. For example info 0, use 0 or use exploi
 
 Muito promissor. Esse serviço tem um backdoor conhecido e usaremos esse exploit para tentar ganhar acesso à máquina.
 
-# Gaining access
+# Gaining Access
 
 Agora, tentaremos rodar esse exploit.
 
@@ -279,7 +279,7 @@ server
 
 Estamos com um usuário que não é root e tentaremos escalar privilégio agora.
 
-# Escalação de privilégio
+# Privilege Escalation
 
 Vou tentar, como quem não quer nada, obter o root digitando a senha padrão root. (Muito improvável em um cenário real)
 
