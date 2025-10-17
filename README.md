@@ -2,7 +2,7 @@
 
 # Introduction
 
-This portfolio have as goal to share my knowlege and my achievements in Cybersecurity.
+This portfolio has the goal of sharing my knowledge and achievements in cybersecurity.
 
 # Topics
 
