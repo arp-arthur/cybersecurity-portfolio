@@ -1,7 +1,9 @@
 # Smol - TryHackMe (Medium)
 
 **Autor:** Arthur Pinheiro
+
 **Tags:** Wordpress, LFI, RCE
+
 **Sumário:** Máquina Linux rodando uma aplicação Wordpress em cima de um webserver Apache.
 Para pos-exploitation foi tirado vantagem de misconfigurations no servidor.
 

@@ -3,7 +3,9 @@
 # Gatekeeper - TryHackMe (Medium)
 
 **Autor:** Arthur Pinheiro
+
 **Tags:** buffer overflow, smb, privilege escalation, windows, psexec
+
 **Sumário:** Máquina Windows vulnerável a buffer overflow.
 Para pos-exploitation, foi utilizado o psexec que se autentica através do protocolo SMB.
 O psexec é um serviço desenvolvido pela Microsoft que permite a execução de processos em SOs Windows remotamente, por isso, ele executa esses processos com privilégios de sistema e ele faz isso com qualquer credencial administrativa.
